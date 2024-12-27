@@ -8,7 +8,7 @@ class HcGroup {
   final int cardType;
   final List<Card> cards;
   final bool isScrollable;
-  final int height;
+  final double height;
   final bool isFullWidth;
   final String? slug;
   final int level;
@@ -33,7 +33,7 @@ class HcGroup {
     int? cardType,
     List<Card>? cards,
     bool? isScrollable,
-    int? height,
+    double? height,
     bool? isFullWidth,
     String? slug,
     int? level,
@@ -61,7 +61,7 @@ class HcGroup {
             [],
         designType: DesignType.fromString(json["design_type"]),
         isScrollable: json["is_scrollable"] as bool? ?? false,
-        height: json["height"] as int? ?? 0,
+        height: (json["height"] as num?)?.toDouble() ?? 0.0,
         isFullWidth: json["is_full_width"] as bool? ?? false,
         slug: json["slug"] as String?,
         level: json["level"] as int? ?? 0,

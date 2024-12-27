@@ -62,6 +62,7 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
         'Invalid JSON format: ${e.message}',
       );
     } catch (e, stackTrace) {
+      log("Error: ${e.toString()}, stackTrace: $stackTrace");
       throw ServerException(
         'Unexpected error: ${e.toString() + stackTrace.toString()}',
       );
