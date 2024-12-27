@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:famcards/features/cards/data/models/formatted_text_model.dart';
