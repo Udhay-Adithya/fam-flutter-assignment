@@ -110,7 +110,7 @@ In a small project like this, the **domain layer**—typically responsible for d
 1. Clone the repository:  
    ```bash
    git clone https://github.com/Udhay-Adithya/famapp-flutter-assignment.git
-   cd contextual-cards-container
+   cd famapp-flutter-assignment
    ```
 
 2. Install dependencies:  
