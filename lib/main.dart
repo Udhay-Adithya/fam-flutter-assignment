@@ -1,4 +1,4 @@
-import 'package:famcards/features/cards/presentation/pages/home_screen.dart';
+import 'package:famcards/features/cards/presentation/pages/cards_test_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const CardsTestPage(),
     );
   }
 }
