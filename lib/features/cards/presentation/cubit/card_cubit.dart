@@ -50,7 +50,7 @@ class CardCubit extends Cubit<CardState> {
     await fetchCards();
   }
 
-  // Refresh cards (e.g., on pull-to-refresh)
+  // Refresh cards
   Future<void> refreshCards() async {
     await fetchCards();
   }

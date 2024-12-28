@@ -100,9 +100,21 @@ class HomePage extends StatelessWidget {
             );
           } else if (state is CardError) {
             return Center(
-              child: Text(
-                'Error: ${state.message}',
-                style: const TextStyle(color: Colors.red),
+              child: Column(
+                children: [
+                  Text(
+                    'Error: ${state.message}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      context.read<CardCubit>().refreshCards();
+                    },
+                    child: const Text("Retry"),
+                  ),
+                  const SizedBox(height: 20),
+                  Image.asset('assets/logo/fam_bird.png'),
+                ],
               ),
             );
           } else {
