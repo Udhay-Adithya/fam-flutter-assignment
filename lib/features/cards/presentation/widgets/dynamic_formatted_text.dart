@@ -24,9 +24,7 @@ class DynamicFormattedText extends StatelessWidget {
         textSpans.add(TextSpan(
           text: segment,
           style: const TextStyle(
-            fontSize: 30,
-            color: Colors.white,
-          ),
+              fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
         ));
       }
 
@@ -41,6 +39,9 @@ class DynamicFormattedText extends StatelessWidget {
             decoration: entity.fontStyle == "underline"
                 ? TextDecoration.underline
                 : TextDecoration.none,
+            fontWeight: (entity.fontFamily?.contains("bold") ?? false)
+                ? FontWeight.bold
+                : FontWeight.normal,
           ),
         ));
         entityIndex++;

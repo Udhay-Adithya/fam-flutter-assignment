@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF7F6F3),
       appBar: AppBar(
         title: Image.asset('assets/logo/fampaylogo.png'),
       ),

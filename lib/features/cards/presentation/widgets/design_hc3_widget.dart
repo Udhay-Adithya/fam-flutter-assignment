@@ -14,7 +14,7 @@ class DesignHC3Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: hcGroup.height.toDouble(),
+      height: hcGroup.height - 120,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: hcGroup.cards.length,
@@ -30,50 +30,53 @@ class DesignHC3Widget extends StatelessWidget {
   }
 
   Widget _buildHc3Card(BuildContext context, card.Card card) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15), // Rounded corners
-          child: Image.network(
-            card.bgImage?.imageUrl ?? "",
-            fit: BoxFit.cover,
-            width: MediaQuery.sizeOf(context).width - 16,
-          ),
-        ),
-        // Text Overlay with Padding
-        Positioned(
-          left: 50,
-          right: 10,
-          top: 200,
-          child: DynamicFormattedText(
-            formattedTitle: card.formattedTitle!,
-          ),
-        ),
-        ...card.cta.map((cta) {
-          return Positioned(
-            left: 50,
-            bottom: 180,
-            child: ElevatedButton(
-              onPressed: () async {
-                await urlLauncher(card.url ?? "https://google.com");
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: convertHexToColor(cta.bgColor),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                cta.text,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15), // Rounded corners
+            child: Image.network(
+              card.bgImage?.imageUrl ?? "",
+              fit: BoxFit.cover,
+              width: MediaQuery.sizeOf(context).width - 16,
             ),
-          );
-        }),
-      ],
+          ),
+          // Text Overlay with Padding
+          Positioned(
+            left: 50,
+            right: 10,
+            top: 200,
+            child: DynamicFormattedText(
+              formattedTitle: card.formattedTitle!,
+            ),
+          ),
+          ...card.cta.map((cta) {
+            return Positioned(
+              left: 50,
+              bottom: 50,
+              child: ElevatedButton(
+                onPressed: () async {
+                  await urlLauncher(card.url ?? "https://google.com");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: convertHexToColor(cta.bgColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text(
+                  cta.text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            );
+          }),
+        ],
+      ),
     );
   }
 }

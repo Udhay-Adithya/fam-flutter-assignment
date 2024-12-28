@@ -1,3 +1,5 @@
+import 'package:famcards/core/utils/hex_to_color.dart';
+import 'package:famcards/features/cards/data/models/card_model.dart' as card;
 import 'package:flutter/material.dart';
 import '../../data/models/hc_group_model.dart';
 
@@ -8,40 +10,52 @@ class DesignHC6Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: hcGroup.height, // Set the height of the parent container
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: hcGroup.cards.length,
-        itemBuilder: (context, index) {
-          final card = hcGroup.cards[index];
-          return Container(
-            height: hcGroup.height,
-            width: MediaQuery.of(context).size.width - 10,
-            margin: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(9),
+    return Padding(
+      padding: const EdgeInsets.only(top: 4, bottom: 12.0),
+      child: SizedBox(
+        height: hcGroup.height * 1.8,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: hcGroup.cards.length,
+          itemBuilder: (context, index) {
+            final card = hcGroup.cards[index];
+            return _buildHc6Card(context, card);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHc6Card(BuildContext context, card.Card card) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width - 16,
+        child: ListTile(
+          tileColor: convertHexToColor(card.bgColor),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              card.icon?.imageUrl ?? "",
+              fit: BoxFit.cover,
+              width: ((card.iconSize)?.toDouble() ?? 16) * 2,
+              height: (card.iconSize?.toDouble() ?? 16) * 2,
             ),
-            child: Row(
-              children: [
-                Image.network(
-                  card.icon?.imageUrl ?? "",
-                  scale: 1,
-                  height: card.iconSize?.toDouble(),
-                ),
-                Text(
-                  card.formattedTitle?.text ?? "",
+          ),
+          title: card.formattedTitle != null
+              ? Text(
+                  card.formattedTitle?.entities.first.text ?? "",
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black, // Make the text visible
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          );
-        },
+                )
+              : null,
+          trailing: const Icon(Icons.arrow_forward_ios_rounded),
+        ),
       ),
     );
   }

@@ -10,7 +10,7 @@ class DesignHC5Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200, // Set the height of the parent container
+      height: 170,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: hcGroup.cards.length,
