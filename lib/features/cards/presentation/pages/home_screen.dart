@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
                     'Hey there!',
@@ -66,27 +67,30 @@ class HomePage extends StatelessWidget {
               ...hcGroups.where((group) => group.designType == DesignType.HC1),
             ];
 
-            return RefreshIndicator.adaptive(
-              onRefresh: () async {
-                await context.read<CardCubit>().refreshCards();
-              },
-              child: ListView.builder(
-                itemCount: sortedHcGroups.length,
-                itemBuilder: (context, index) {
-                  final hcGroup = sortedHcGroups[index];
-                  switch (hcGroup.designType) {
-                    case DesignType.HC1:
-                      return DesignHC1Widget(hcGroup: hcGroup);
-                    case DesignType.HC3:
-                      return DesignHC3Widget(hcGroup: hcGroup);
-                    case DesignType.HC5:
-                      return DesignHC5Widget(hcGroup: hcGroup);
-                    case DesignType.HC6:
-                      return DesignHC6Widget(hcGroup: hcGroup);
-                    case DesignType.HC9:
-                      return DesignHC9Widget(hcGroup: hcGroup);
-                  }
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: RefreshIndicator.adaptive(
+                onRefresh: () async {
+                  await context.read<CardCubit>().refreshCards();
                 },
+                child: ListView.builder(
+                  itemCount: sortedHcGroups.length,
+                  itemBuilder: (context, index) {
+                    final hcGroup = sortedHcGroups[index];
+                    switch (hcGroup.designType) {
+                      case DesignType.HC1:
+                        return DesignHC1Widget(hcGroup: hcGroup);
+                      case DesignType.HC3:
+                        return DesignHC3Widget(hcGroup: hcGroup);
+                      case DesignType.HC5:
+                        return DesignHC5Widget(hcGroup: hcGroup);
+                      case DesignType.HC6:
+                        return DesignHC6Widget(hcGroup: hcGroup);
+                      case DesignType.HC9:
+                        return DesignHC9Widget(hcGroup: hcGroup);
+                    }
+                  },
+                ),
               ),
             );
           } else if (state is NoCardsAvailable) {
