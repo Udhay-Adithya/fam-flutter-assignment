@@ -13,7 +13,7 @@ class DesignHC6Widget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 4, bottom: 12.0),
       child: SizedBox(
-        height: hcGroup.height * 1.8,
+        height: hcGroup.height * 2,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: hcGroup.cards.length,
@@ -32,6 +32,10 @@ class DesignHC6Widget extends StatelessWidget {
       child: SizedBox(
         width: MediaQuery.sizeOf(context).width - 16,
         child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 4,
+            horizontal: 24,
+          ),
           tileColor: convertHexToColor(card.bgColor),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
