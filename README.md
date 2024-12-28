@@ -40,6 +40,7 @@ Each API response includes **Card Groups**, which are rows of cards, with detail
 - **Cubit** (for state management)  
 - **HTTP** (for API requests)  
 - **Shared Preferences** (for persistence)  
+- **Get it** (for dependency injection)  
 
 ---
 
@@ -88,6 +89,9 @@ lib/
 │       ├── buttons/               # Remind Later and Dismiss now button
 │       ├── design_hc1_widget.dart # List view of hc1 cards
 │       └── design_hc3_widget.dart # List view of hc3 cards
+│
+├── init_dependencies.dart         # Imports for dependecy injections
+├── init_dependencies.main.dart    # Dependencey injection
 └── main.dart                      # Entry point of the application
 ```
 
