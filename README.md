@@ -62,13 +62,12 @@ Refer to the [Figma Design](https://www.figma.com/file/AvK2BRGwMTv4kQab5ymJ0K/AA
 lib/
 ├── core/
 │   ├── constants/
-│   │   └── app_colors.dart         # App-wide color constants
-│   │   └── app_text_styles.dart    # Common text styles
+│   │   └── app_constants.dart      # App-wide constants
 │   ├── utils/
-│   │   └── api_client.dart        # Helper for API calls
-│   │   └── local_storage.dart     # Helper for managing Hive or shared preferences
+│   │   └── launch_url.dart       # Helper to launch url's
+│   │   └── hex_to_color.dart     # Helper to conver hex color code to flutter color code
 │   └── error/
-│       └── error_handler.dart     # Error handling utility
+│       └── exceptions.dart        # Custom exceptions
 ├── data/
 │   ├── models/
 │   │   └── card_model.dart        # Model for a Card
@@ -83,12 +82,12 @@ lib/
 │   ├── cubit/
 │   │   └── card_cubit.dart        # Cubit for managing card states
 │   │   └── card_state.dart        # Card state definitions (loading, success, error, etc.)
-│   ├── screens/
+│   ├── pages/
 │   │   └── home_screen.dart       # The main screen rendering contextual cards
 │   └── widgets/
-│       ├── card_list.dart         # List view of contextual cards
-│       ├── card_item.dart         # UI for an individual card
-│       └── error_widget.dart      # Error state display
+│       ├── buttons/               # Remind Later and Dismiss now button
+│       ├── design_hc1_widget.dart # List view of hc1 cards
+│       └── design_hc3_widget.dart # List view of hc3 cards
 └── main.dart                      # Entry point of the application
 ```
 
@@ -129,7 +128,7 @@ In a small project like this, the **domain layer**—typically responsible for d
 
 ### 🎥 Video Walkthrough  
 
-https://youtu.be/will-be-updated  
+https://drive.google.com/file/d/1iYDiVGU4wV-2xTRzhCSX9JJwE3wjAbjV/view?usp=drive_link 
 
 ### 📱 APK  
 
