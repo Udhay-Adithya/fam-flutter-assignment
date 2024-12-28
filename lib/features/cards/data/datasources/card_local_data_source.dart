@@ -6,6 +6,7 @@ abstract interface class CardLocalDataSource {
   Future<void> clearCardState({required String cardId});
   List<String> getDismissedCards();
   List<String> getRemindLaterCards();
+  Future<void> clearAllRemindLaterCards();
 }
 
 class CardLocalDataSourceImpl implements CardLocalDataSource {
@@ -48,5 +49,20 @@ class CardLocalDataSourceImpl implements CardLocalDataSource {
     return keys
         .where((key) => sharedPreferences.getString(key) == 'remind_later')
         .toList();
+  }
+
+  @override
+  Future<void> clearAllRemindLaterCards() async {
+    final keys = sharedPreferences.getKeys();
+
+    // Get all keys that have 'remind_later' state
+    final remindLaterKeys =
+        keys.where((key) => sharedPreferences.getString(key) == 'remind_later');
+
+    // Remove both the state and timestamp entries for each remind later card
+    for (final key in remindLaterKeys) {
+      await sharedPreferences.remove(key);
+      await sharedPreferences.remove('${key}_timestamp');
+    }
   }
 }

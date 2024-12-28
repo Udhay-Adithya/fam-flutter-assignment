@@ -21,6 +21,9 @@ class _DesignHC3WidgetState extends State<DesignHC3Widget> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
+    if (widget.hcGroup.cards.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return SizedBox(
       height: widget.hcGroup.height - 120,
       child: ListView.builder(

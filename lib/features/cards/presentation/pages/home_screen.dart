@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
       body: BlocBuilder<CardCubit, CardState>(
         builder: (context, state) {
           if (state is CardInitial) {
+            context.read<CardCubit>().clearAllRemindLaterCards();
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
