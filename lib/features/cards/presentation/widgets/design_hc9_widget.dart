@@ -12,16 +12,19 @@ class DesignHC9Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: SizedBox(
-        height: hcGroup.height *
-            1.3, // Increased height by 30% to make it look better
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: hcGroup.cards.length,
-          itemBuilder: (context, index) {
-            final card = hcGroup.cards[index];
-            return _buildHc9Card(context, card);
-          },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 4.0),
+        child: SizedBox(
+          height: hcGroup.height *
+              1.3, // Increased height by 30% to make it look better
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: hcGroup.cards.length,
+            itemBuilder: (context, index) {
+              final card = hcGroup.cards[index];
+              return _buildHc9Card(context, card);
+            },
+          ),
         ),
       ),
     );
@@ -29,7 +32,7 @@ class DesignHC9Widget extends StatelessWidget {
 
   Widget _buildHc9Card(BuildContext context, card.Card card) {
     return Padding(
-      padding: const EdgeInsets.only(right: 4.0),
+      padding: const EdgeInsets.only(right: 12.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: AspectRatio(

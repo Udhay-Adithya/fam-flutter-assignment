@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F6F3),
       appBar: AppBar(
+        centerTitle: true,
         title: Image.asset('assets/logo/fampaylogo.png'),
       ),
       body: BlocBuilder<CardCubit, CardState>(

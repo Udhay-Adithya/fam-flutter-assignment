@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:famcards/core/error/exceptions.dart';
 import 'package:famcards/features/cards/data/datasources/card_local_data_source.dart';
 import 'package:famcards/features/cards/data/datasources/card_remote_data_source.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,9 @@ class CardCubit extends Cubit<CardState> {
       } else {
         emit(CardLoaded(cards: filteredCards));
       }
+    } on ServerException catch (e, stackTrace) {
+      log("Error: ${e.toString()}, stackTrace: $stackTrace");
+      emit(CardError(message: e.message));
     } catch (e, stackTrace) {
       log("Error: ${e.toString()}, stackTrace: $stackTrace");
       emit(CardError(message: e.toString()));
