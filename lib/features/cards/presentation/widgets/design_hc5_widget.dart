@@ -1,3 +1,4 @@
+import 'package:famcards/features/cards/data/models/card_model.dart' as card;
 import 'package:flutter/material.dart';
 import '../../data/models/hc_group_model.dart';
 
@@ -15,22 +16,19 @@ class DesignHC5Widget extends StatelessWidget {
         itemCount: hcGroup.cards.length,
         itemBuilder: (context, index) {
           final card = hcGroup.cards[index];
-          return Container(
-            height: 150,
-            width: MediaQuery.of(context).size.width - 10,
-            margin: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(9),
-              image: DecorationImage(
-                image: NetworkImage(
-                  card.bgImage?.imageUrl ?? "",
-                  scale: 1,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
+          return _buildHc5Card(context, card);
         },
+      ),
+    );
+  }
+
+  Widget _buildHc5Card(BuildContext context, card.Card card) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Image.network(
+        card.bgImage?.imageUrl ?? "",
+        fit: BoxFit.cover,
+        width: MediaQuery.sizeOf(context).width - 16,
       ),
     );
   }

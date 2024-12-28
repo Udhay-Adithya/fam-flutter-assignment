@@ -31,31 +31,29 @@ class DesignHC3Widget extends StatelessWidget {
 
   Widget _buildHc3Card(BuildContext context, card.Card card) {
     return Stack(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       children: [
-        AspectRatio(
-          aspectRatio: card.bgImage?.aspectRatio ?? 1.0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15), // Rounded corners
-            child: Image.network(
-              card.bgImage?.imageUrl ?? "",
-              fit: BoxFit.cover,
-            ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15), // Rounded corners
+          child: Image.network(
+            card.bgImage?.imageUrl ?? "",
+            fit: BoxFit.cover,
+            width: MediaQuery.sizeOf(context).width - 16,
           ),
         ),
         // Text Overlay with Padding
         Positioned(
-          left: 60,
+          left: 50,
           right: 10,
-          top: 250,
+          top: 200,
           child: DynamicFormattedText(
             formattedTitle: card.formattedTitle!,
           ),
         ),
         ...card.cta.map((cta) {
           return Positioned(
-            left: 60,
-            bottom: 120,
+            left: 50,
+            bottom: 180,
             child: ElevatedButton(
               onPressed: () async {
                 await urlLauncher(card.url ?? "https://google.com");
