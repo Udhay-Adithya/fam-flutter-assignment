@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:famcards/core/constants/app_constants.dart';
@@ -26,7 +27,7 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
         headers: {
           'Content-Type': 'application/json',
         },
-      );
+      ).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         if (response.body.isEmpty) {
@@ -53,9 +54,13 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
       throw ServerException(
         'Unexpected error: ${e.message})}',
       );
-    } on http.ClientException catch (e) {
-      throw ServerException(
-        'Network error: ${e.message}',
+    } on TimeoutException {
+      throw const ServerException(
+        'Request timed out: Please make sure you have a stable internet connection',
+      );
+    } on http.ClientException {
+      throw const ServerException(
+        'Network error: Please check your internet connection',
       );
     } on FormatException catch (e) {
       throw ServerException(

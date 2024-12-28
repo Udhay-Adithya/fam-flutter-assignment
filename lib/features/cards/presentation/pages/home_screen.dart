@@ -102,9 +102,12 @@ class HomePage extends StatelessWidget {
           } else if (state is CardError) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Error: ${state.message}',
+                    textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.red),
                   ),
                   TextButton(
